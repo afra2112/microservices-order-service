@@ -3,7 +3,7 @@ package org.microservice.orderservice.customer;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import java.util.Optional;
 import java.util.UUID;
 
 @FeignClient(
@@ -13,6 +13,6 @@ import java.util.UUID;
 public interface CustomerClient {
 
     @GetMapping("/{customerId}")
-    CustomerResponse getById(@PathVariable UUID customerId);
+    Optional<CustomerResponse> getById(@PathVariable UUID customerId);
 
 }
