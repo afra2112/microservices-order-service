@@ -2,10 +2,10 @@ package org.microservice.orderservice.service.order;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.microservice.orderservice.config.KafkaOrderTopicConfig;
 import org.microservice.orderservice.controller.dto.OrderLineRequest;
 import org.microservice.orderservice.controller.dto.OrderProducer;
 import org.microservice.orderservice.controller.dto.OrderRequest;
+import org.microservice.orderservice.controller.dto.OrderResponse;
 import org.microservice.orderservice.customer.CustomerClient;
 import org.microservice.orderservice.entity.Order;
 import org.microservice.orderservice.exception.BusinessException;
@@ -54,5 +54,12 @@ public class OrderService {
         );
 
         return order.getOrderId();
+    }
+
+    public List<OrderResponse> findAll() {
+        return orderRepository.findAll()
+                .stream()
+                .map(orderMapper::entityToResponse)
+                .toList();
     }
 }
