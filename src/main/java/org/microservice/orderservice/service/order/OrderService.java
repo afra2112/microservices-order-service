@@ -2,6 +2,7 @@ package org.microservice.orderservice.service.order;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.Nullable;
 import org.microservice.orderservice.controller.dto.OrderLineRequest;
 import org.microservice.orderservice.controller.dto.OrderProducer;
 import org.microservice.orderservice.controller.dto.OrderRequest;
@@ -61,5 +62,13 @@ public class OrderService {
                 .stream()
                 .map(orderMapper::entityToResponse)
                 .toList();
+    }
+
+    public OrderResponse findById(Long orderId) {
+        return orderRepository.findById(orderId)
+                .map(orderMapper::entityToResponse)
+                .orElseThrow(
+                        () -> new BusinessException("Order not found by the provided id: " + orderId)
+                );
     }
 }

@@ -1,6 +1,7 @@
 package org.microservice.orderservice.controller;
 
 import jakarta.validation.Valid;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.microservice.orderservice.controller.dto.OrderRequest;
 import org.microservice.orderservice.controller.dto.OrderResponse;
@@ -24,5 +25,10 @@ public class OrderController {
     @GetMapping
     public ResponseEntity<List<OrderResponse>> findAll(){
         return ResponseEntity.ok(orderService.findAll());
+    }
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<OrderResponse> findById(@PathVariable @Valid @NonNull Long orderId){
+        return ResponseEntity.ok(orderService.findById(orderId));
     }
 }
