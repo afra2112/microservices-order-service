@@ -27,7 +27,7 @@ public class Order {
 
     private String reference;
 
-    private BigDecimal totalAmmount;
+    private BigDecimal totalAmount;
 
     @Enumerated(EnumType.STRING)
     private PaymentMethodEnum paymentMethod;
