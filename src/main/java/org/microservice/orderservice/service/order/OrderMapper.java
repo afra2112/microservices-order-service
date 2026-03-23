@@ -22,7 +22,7 @@ public class OrderMapper {
         return new OrderResponse(
                 order.getOrderId(),
                 order.getReference(),
-                order.getTotalAmmount(),
+                order.getTotalAmount(),
                 order.getPaymentMethod(),
                 order.getCustomerId()
         );

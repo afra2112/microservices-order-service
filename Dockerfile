@@ -1,4 +1,4 @@
-FROM maven:3.9.9-ecplise-temurin-21 as maven-build
+FROM maven:3.9.9-eclipse-temurin-21 as maven-build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
