@@ -15,7 +15,6 @@ import org.microservice.orderservice.product.ProductClient;
 import org.microservice.orderservice.product.PurchaseResponse;
 import org.microservice.orderservice.service.kafka.OrderConfirmation;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
