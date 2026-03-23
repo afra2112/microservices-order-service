@@ -2,14 +2,17 @@ package org.microservice.orderservice.service.order;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.Nullable;
 import org.microservice.orderservice.controller.dto.OrderLineRequest;
 import org.microservice.orderservice.controller.dto.OrderProducer;
 import org.microservice.orderservice.controller.dto.OrderRequest;
+import org.microservice.orderservice.controller.dto.OrderResponse;
 import org.microservice.orderservice.customer.CustomerClient;
 import org.microservice.orderservice.entity.Order;
 import org.microservice.orderservice.exception.BusinessException;
 import org.microservice.orderservice.payment.PaymentClient;
 import org.microservice.orderservice.payment.PaymentRequest;
+import org.microservice.orderservice.exception.ErrorCode;
 import org.microservice.orderservice.persistence.OrderRepository;
 import org.microservice.orderservice.product.ProductClient;
 import org.microservice.orderservice.product.PurchaseResponse;
@@ -32,7 +35,7 @@ public class OrderService {
     public Long createOrder(@Valid OrderRequest request) {
 
         var customer = customerClient.getById(request.customerId())
-                .orElseThrow(() -> new BusinessException("Cannot create order. Not customer found by the provided id: " + request.customerId()));
+                .orElseThrow(() -> new BusinessException(ErrorCode.ORD_001, "Cannot create order. Not customer found by the provided id: " + request.customerId()));
 
         List<PurchaseResponse> purchasedProducts = productClient.purchaseProducts(request.products());
 
@@ -63,5 +66,20 @@ public class OrderService {
         );
 
         return order.getOrderId();
+    }
+
+    public List<OrderResponse> findAll() {
+        return orderRepository.findAll()
+                .stream()
+                .map(orderMapper::entityToResponse)
+                .toList();
+    }
+
+    public OrderResponse findById(Long orderId) {
+        return orderRepository.findById(orderId)
+                .map(orderMapper::entityToResponse)
+                .orElseThrow(
+                        () -> new BusinessException(ErrorCode.GNR_001, "Order not found by the provided id: " + orderId)
+                );
     }
 }
