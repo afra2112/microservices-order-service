@@ -6,13 +6,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
-@FeignClient(
-        name = "product-service",
-        url = "http://localhost:product-service/api/v1/products"
-)
+@FeignClient(name = "product-service")
 public interface ProductClient {
 
-    @PostMapping("/purchase")
+    @PostMapping("/api/v1/products/purchase")
     List<PurchaseResponse> purchaseProducts(@RequestBody List<PurchaseRequest> request);
 
 }

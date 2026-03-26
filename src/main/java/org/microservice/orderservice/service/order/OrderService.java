@@ -2,7 +2,6 @@ package org.microservice.orderservice.service.order;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.jspecify.annotations.Nullable;
 import org.microservice.orderservice.controller.dto.OrderLineRequest;
 import org.microservice.orderservice.controller.dto.OrderProducer;
 import org.microservice.orderservice.controller.dto.OrderRequest;

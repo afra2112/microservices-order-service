@@ -1,7 +1,6 @@
 package org.microservice.orderservice.service.order;
 
 import lombok.RequiredArgsConstructor;
-import org.jspecify.annotations.Nullable;
 import org.microservice.orderservice.controller.dto.OrderLineRequest;
 import org.microservice.orderservice.controller.dto.OrderLineResponse;
 import org.microservice.orderservice.persistence.OrderLineRepository;
