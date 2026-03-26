@@ -4,12 +4,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(
-        name = "payment-service",
-        url = "http://localhost:payment-service/api/v1/payment"
-)
+@FeignClient(name = "payment-service")
 public interface PaymentClient {
 
-    @PostMapping
+    @PostMapping("/api/v1/payment")
     Long requestOrderPayment(@RequestBody PaymentRequest request);
 }
