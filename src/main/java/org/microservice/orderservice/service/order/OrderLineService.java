@@ -22,7 +22,7 @@ public class OrderLineService {
     }
 
     public List<OrderLineResponse> findAllById(Long orderId) {
-        return orderLineRepository.findAllByOrderId(orderId)
+        return orderLineRepository.findAllByOrder_OrderId(orderId)
                 .stream()
                 .map(orderLineMapper::entityToResponse)
                 .toList();
