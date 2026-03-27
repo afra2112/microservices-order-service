@@ -20,7 +20,7 @@ public record OrderRequest(
         PaymentMethodEnum paymentMethod,
 
         @NotNull
-        UUID customerId,
+        String customerId,
 
         @NotEmpty
         List<PurchaseRequest> products
