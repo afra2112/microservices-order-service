@@ -10,6 +10,6 @@ import java.util.UUID;
 public interface CustomerClient {
 
     @GetMapping("/api/v1/customers/{customerId}")
-    Optional<CustomerResponse> getById(@PathVariable UUID customerId);
+    Optional<CustomerResponse> getById(@PathVariable String customerId);
 
 }

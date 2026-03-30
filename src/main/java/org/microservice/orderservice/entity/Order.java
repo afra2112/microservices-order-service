@@ -32,7 +32,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private PaymentMethodEnum paymentMethod;
 
-    private UUID customerId;
+    private String customerId;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)

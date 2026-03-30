@@ -10,6 +10,6 @@ public record OrderResponse(
         String reference,
         BigDecimal amount,
         PaymentMethodEnum paymentMethod,
-        UUID customerId
+        String customerId
 ) {
 }
